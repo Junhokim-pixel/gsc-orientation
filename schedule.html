@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간표 및 일정</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            width: 150px;
+            height: auto;
+        }
+
+        .header-content {
+            padding-top: 60px;
+        }
+
+        header h1 {
+            color: #0068b7;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #009999;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .content-section {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #0068b7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .image-hint {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .schedule-image {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            display: block;
+            margin: 0 auto 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .schedule-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .schedule-image:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 2% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1400px;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10000;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+        }
+
+        .modal-caption {
+            color: #fff;
+            font-size: 1.2em;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #0068b7;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .back-button:hover {
+            background-color: #0056a0;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+
+        footer .contact {
+            color: #0068b7;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+                left: 20px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .header-content {
+                padding-top: 50px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            .content-section h2 {
+                font-size: 1.5em;
+            }
+
+            .close-modal {
+                top: 10px;
+                right: 10px;
+                font-size: 35px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="images/gs_caltex_logo.png" alt="GS칼텍스 로고" class="logo">
+            <div class="header-content">
+                <h1>시간표 및 일정</h1>
+                <p>입문연수 전체 일정을 확인하세요</p>
+            </div>
+        </header>
+
+        <div class="content-section">
+            <h2>📅 입문연수 시간표</h2>
+            <p class="image-hint">💡 이미지를 클릭하면 크게 볼 수 있습니다</p>
+            
+            <!-- 첫 번째 이미지 -->
+            <img src="images/schedule_1.png" alt="입문연수 시간표 1" class="schedule-image">
+            
+            <!-- 두 번째 이미지 -->
+            <img src="images/schedule_2.png" alt="입문연수 시간표 2" class="schedule-image">
+        </div>
+
+        <div class="button-group">
+            <a href="index.html" class="back-button">메인 페이지로 돌아가기</a>
+        </div>
+
+        <footer>
+            <p>문의사항이 있으시면 언제든지 연락주세요</p>
+            <p class="contact">담당자 연락처: 010-6203-2561</p>
+        </footer>
+    </div>
+
+    <!-- 이미지 모달 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeBtn">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM 요소 가져오기
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        const closeBtn = document.getElementById('closeBtn');
+        const scheduleImages = document.querySelectorAll('.schedule-image');
+
+        // 모든 시간표 이미지에 클릭 이벤트 추가
+        scheduleImages.forEach(function(img) {
+            img.addEventListener('click', function() {
+                modal.classList.add('active');
+                modalImg.src = this.src;
+                captionText.textContent = this.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 닫기 버튼 클릭 시
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // 모달 배경 클릭 시 닫기
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선배와의 대화 사전질문지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            width: 150px;
+            height: auto;
+        }
+
+        .header-content {
+            padding-top: 60px;
+        }
+
+        header h1 {
+            color: #0068b7;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #009999;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .content-section {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #0068b7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .senior-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .senior-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .senior-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #0068b7;
+        }
+
+        .senior-card h3 {
+            color: #0068b7;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .senior-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .senior-card .hashtags span {
+            display: inline-block;
+            background-color: #e0f2f7;
+            color: #0068b7;
+            font-size: 0.8em;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 3px;
+        }
+
+        .form-section {
+            margin-top: 40px;
+            background-color: #f0f8ff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #cceeff;
+            text-align: center;
+        }
+
+        .form-section h3 {
+            color: #0068b7;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .form-embed {
+            width: 100%;
+            height: 600px; /* Adjust height as needed for the form */
+            border: none;
+            border-radius: 8px;
+            overflow: hidden; /* Ensures no scrollbar if form is smaller */
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #0068b7;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .back-button:hover {
+            background-color: #0056a0;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+
+        footer .contact {
+            color: #0068b7;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+                left: 20px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .header-content {
+                padding-top: 50px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            .content-section h2 {
+                font-size: 1.5em;
+            }
+
+            .senior-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+
+            .form-section h3 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="images/gs_caltex_logo.png" alt="GS칼텍스 로고" class="logo">
+            <div class="header-content">
+                <h1>선배와의 대화 사전질문지</h1>
+                <p>궁금한 점을 미리 질문하고 답변을 들어보세요</p>
+            </div>
+        </header>
+
+        <div class="content-section">
+            <h2>💬 선배님을 소개합니다!</h2>
+            <div class="senior-grid">
+                <div class="senior-card">
+                    &lt;img src="images/senior_profile_1.jpg" alt="김선배님 프로필"&gt;
+                    <h3>김지수 선배님</h3>
+                    <p>소속: 인사팀 | 연차: 5년차</p>
+                    <div class="hashtags">
+                        <span>#인사관리</span>
+                        <span>#기업문화</span>
+                        <span>#커리어고민</span>
+                    </div>
+                </div>
+                <div class="senior-card">
+                    &lt;img src="images/senior_profile_2.jpg" alt="이선배님 프로필"&gt;
+                    <h3>이진우 선배님</h3>
+                    <p>소속: 생산운영팀 | 연차: 7년차</p>
+                    <div class="hashtags">
+                        <span>#공정개선</span>
+                        <span>#현장경험</span>
+                        <span>#문제해결</span>
+                    </div>
+                </div>
+                <div class="senior-card">
+                    &lt;img src="images/senior_profile_3.jpg" alt="박선배님 프로필"&gt;
+                    <h3>박서현 선배님</h3>
+                    <p>소속: 마케팅팀 | 연차: 3년차</p>
+                    <div class="hashtags">
+                        <span>#브랜딩</span>
+                        <span>#디지털마케팅</span>
+                        <span>#신사업</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>선배님께 질문을 남겨주세요!</h3>
+                <p>선배 프로필을 참고하여 자유롭게 질문을 작성해 주세요. 연수 중 '선배와의 대화' 시간에 답변해 드립니다.</p>
+                <!-- M365 Forms 임베드 코드 삽입 위치 -->
+                <iframe class="form-embed" src="https://forms.office.com/Pages/ResponsePage.aspx?id=z5DZOU9c20miXgdj-zxh8fxNSokUYXdIvbKolveZFbJUQzFDTjNQRVZPQUwxVDBOUVA4UjhQSFk0US4u" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height: 100vh;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <a href="index.html" class="back-button">메인 페이지로 돌아가기</a>
+        </div>
+
+        <footer>
+            <p>문의사항이 있으시면 언제든지 연락주세요</p>
+            <p class="contact">담당자 연락처: 010-6203-2561</p>
+        </footer>
+    </div>
+</body>
+</html>
