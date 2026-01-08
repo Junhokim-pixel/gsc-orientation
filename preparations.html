@@ -88,18 +88,36 @@
             padding: 15px 20px;
             margin-bottom: 15px;
             display: flex;
-            align-items: center;
+            flex-direction: column; /* 세로 방향으로 배치 */
             font-size: 1.1em;
         }
 
-        .preparation-list li::before {
-            content: '✅';
-            margin-right: 15px;
-            font-size: 1.2em;
+        /* 체크 아이콘과 품목명을 담는 첫 번째 행 */
+        .item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px; /* 품목명과 설명 사이 간격 */
         }
 
-        .preparation-list strong {
+        .item-header::before {
+            content: '✅';
+            margin-right: 12px;
+            font-size: 1.2em;
+            flex-shrink: 0; /* 아이콘 크기 고정 */
+        }
+
+        .item-title {
             color: #0068b7;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        /* 설명을 담는 두 번째 행 */
+        .item-description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.5;
+            padding-left: 32px; /* 체크 아이콘 너비만큼 들여쓰기 */
         }
 
         .note {
@@ -186,10 +204,36 @@
 
             .preparation-list li {
                 font-size: 1em;
+                padding: 12px 15px;
+            }
+
+            .item-title {
+                font-size: 1em;
+            }
+
+            .item-description {
+                font-size: 0.9em;
+                padding-left: 28px; /* 모바일에서 들여쓰기 조정 */
+            }
+
+            .item-header {
+                margin-bottom: 6px;
             }
 
             .note {
                 font-size: 0.95em;
+                padding: 12px 15px;
+            }
+        }
+
+        /* 작은 모바일 화면 추가 최적화 */
+        @media (max-width: 480px) {
+            .item-description {
+                padding-left: 0; /* 작은 화면에서는 들여쓰기 제거 */
+            }
+
+            .preparation-list li {
+                padding: 10px 12px;
             }
         }
     </style>
@@ -207,15 +251,45 @@
         <div class="content-section">
             <h2>🎒 연수 준비물 안내</h2>
             <ul class="preparation-list">
-                <li><strong>개인 필기구 및 노트:</strong> 중요한 내용을 메모할 때 필요합니다.</li>
-                <li><strong>단정한 복장:</strong> 연수 기간 동안 단정한 복장을 권장합니다.</li>
-                <li><strong>운동화 (일부 일정):</strong> 여수공장 및 물류센터 현장 견학 시 필요할 수 있습니다. </li>
-                <li><strong>개인위생용품:</strong> 칫솔, 치약 등 세면도구(1박 일정 시) </li>
-                <li><strong>신분증:</strong> 본인 확인 및 시설 이용 시 필요할 수 있습니다.</li>
-                <li><strong>개인 상비약:</strong> 평소 복용하시는 약은 개별적으로 지참해 주세요.</li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">개인 필기구 및 노트</span>
+                    </div>
+                    <div class="item-description">중요한 내용을 메모할 때 필요합니다.</div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">단정한 복장</span>
+                    </div>
+                    <div class="item-description">연수 기간 동안 단정한 복장을 권장합니다.</div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">운동화 (일부 일정)</span>
+                    </div>
+                    <div class="item-description">여수공장 및 물류센터 현장 견학 시 필요할 수 있습니다.</div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">개인위생용품</span>
+                    </div>
+                    <div class="item-description">칫솔, 치약 등 세면도구(1박 일정 시)</div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">신분증</span>
+                    </div>
+                    <div class="item-description">본인 확인 및 시설 이용 시 필요할 수 있습니다.</div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <span class="item-title">개인 상비약</span>
+                    </div>
+                    <div class="item-description">평소 복용하시는 약은 개별적으로 지참해 주세요.</div>
+                </li>
             </ul>
             <div class="note">
-                <p>💡 **참고:** 연수 일정에 따라 추가적인 준비물이 필요할 경우, 별도로 안내될 예정입니다.</p>
+                <p>💡 <strong>참고:</strong> 연수 일정에 따라 추가적인 준비물이 필요할 경우, 별도로 안내될 예정입니다.</p>
             </div>
         </div>
 
