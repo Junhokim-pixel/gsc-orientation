@@ -74,53 +74,89 @@
             font-size: 1.8em;
             margin-bottom: 20px;
             font-weight: 600;
-        }
-
-        .senior-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .senior-card {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .senior-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #0068b7;
+        /* 선배 프로필 이미지 영역 */
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 30px auto;
+            cursor: pointer;
         }
 
-        .senior-card h3 {
-            color: #0068b7;
-            font-size: 1.4em;
-            margin-bottom: 5px;
+        .senior-profile-image {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .senior-card p {
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 5px;
+        .senior-profile-image:hover {
+            transform: scale(1.02);
         }
 
-        .senior-card .hashtags span {
-            display: inline-block;
-            background-color: #e0f2f7;
-            color: #0068b7;
-            font-size: 0.8em;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 3px;
+        /* 확대 안내 텍스트 */
+        .zoom-hint {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95vh;
+            margin: auto;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
         }
 
         .form-section {
@@ -135,20 +171,27 @@
         .form-section h3 {
             color: #0068b7;
             font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .form-section p {
+            color: #555;
+            font-size: 1em;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        /* iframe 래퍼 추가 - 모바일 스크롤 문제 해결 */
+        /* iframe 래퍼 - 모바일 스크롤 최적화 */
         .iframe-wrapper {
             width: 100%;
             overflow: auto;
-            -webkit-overflow-scrolling: touch; /* iOS 스크롤 지원 */
+            -webkit-overflow-scrolling: touch;
             border-radius: 8px;
         }
 
         .form-embed {
             width: 100%;
-            height: 800px; /* 데스크톱 기본 높이 */
+            height: 800px;
             border: none;
             border-radius: 8px;
         }
@@ -211,11 +254,12 @@
             }
 
             header h1 {
-                font-size: 1.8em;
+                font-size: 1.6em;
+                line-height: 1.3;
             }
 
             header p {
-                font-size: 1em;
+                font-size: 0.95em;
             }
 
             .content-section {
@@ -223,11 +267,28 @@
             }
 
             .content-section h2 {
-                font-size: 1.5em;
+                font-size: 1.4em;
             }
 
-            .senior-grid {
-                grid-template-columns: 1fr;
+            .profile-image-wrapper {
+                margin: 20px auto;
+            }
+
+            .senior-profile-image {
+                border-radius: 8px;
+            }
+
+            .zoom-hint {
+                font-size: 0.85em;
+            }
+
+            .close-button {
+                top: -35px;
+                font-size: 35px;
+            }
+
+            .modal-content {
+                max-width: 98%;
             }
 
             .form-section {
@@ -235,25 +296,50 @@
             }
 
             .form-section h3 {
-                font-size: 1.3em;
+                font-size: 1.2em;
+            }
+
+            .form-section p {
+                font-size: 0.9em;
             }
 
             /* 모바일에서 iframe 높이 조정 */
             .form-embed {
-                height: 600px; /* 모바일에서 적절한 높이 */
+                height: 600px;
                 min-height: 500px;
             }
 
-            /* 모바일에서 iframe 래퍼 높이 제한 제거 */
             .iframe-wrapper {
                 max-height: none;
+            }
+
+            .back-button {
+                font-size: 1em;
+                padding: 10px 20px;
             }
         }
 
         /* 작은 모바일 화면 추가 최적화 */
         @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.4em;
+            }
+
+            .content-section h2 {
+                font-size: 1.2em;
+            }
+
+            .form-section h3 {
+                font-size: 1.1em;
+            }
+
             .form-embed {
                 height: 500px;
+            }
+
+            .close-button {
+                top: -30px;
+                font-size: 30px;
             }
         }
     </style>
@@ -261,7 +347,7 @@
 <body>
     <div class="container">
         <header>
-            <img src="images/gs_caltex_logo.png" alt="GS칼텍스 로고" class="logo">
+            &lt;img src="images/gs_caltex_logo.png" alt="GS칼텍스 로고" class="logo"&gt;
             <div class="header-content">
                 <h1>선배와의 대화 사전질문</h1>
                 <p>궁금한 점을 미리 질문하고 답변을 들어보세요</p>
@@ -270,44 +356,18 @@
 
         <div class="content-section">
             <h2>💬 선배님을 소개합니다!</h2>
-            <div class="senior-grid">
-                <div class="senior-card">
-                    &lt;img src="images/senior_profile_1.jpg" alt="김선배님 프로필"&gt;
-                    <h3>김지수 선배님</h3>
-                    <p>소속: 인사팀 | 연차: 5년차</p>
-                    <div class="hashtags">
-                        <span>#인사관리</span>
-                        <span>#기업문화</span>
-                        <span>#커리어고민</span>
-                    </div>
-                </div>
-                <div class="senior-card">
-                    &lt;img src="images/senior_profile_2.jpg" alt="이선배님 프로필"&gt;
-                    <h3>이진우 선배님</h3>
-                    <p>소속: 생산운영팀 | 연차: 7년차</p>
-                    <div class="hashtags">
-                        <span>#공정개선</span>
-                        <span>#현장경험</span>
-                        <span>#문제해결</span>
-                    </div>
-                </div>
-                <div class="senior-card">
-                    &lt;img src="images/senior_profile_3.jpg" alt="박선배님 프로필"&gt;
-                    <h3>박서현 선배님</h3>
-                    <p>소속: 마케팅팀 | 연차: 3년차</p>
-                    <div class="hashtags">
-                        <span>#브랜딩</span>
-                        <span>#디지털마케팅</span>
-                        <span>#신사업</span>
-                    </div>
-                </div>
+            
+            <!-- 선배 프로필 이미지 삽입 -->
+            <div class="profile-image-wrapper" id="profileImageWrapper">
+                &lt;img src="images/senior_profile.png" alt="선배 프로필" class="senior-profile-image" id="profileImage"&gt;
             </div>
+            <p class="zoom-hint">💡 이미지를 클릭하면 크게 볼 수 있습니다</p>
 
             <div class="form-section">
                 <h3>선배님께 질문을 남겨주세요!</h3>
                 <p>선배 프로필을 참고하여 자유롭게 질문을 작성해 주세요.<br>
                    '선배와의 대화' 시간에 답변해 드립니다.</p>
-                <!-- iframe 래퍼 추가 -->
+                
                 <div class="iframe-wrapper">
                     <iframe class="form-embed" 
                             src="https://forms.office.com/Pages/ResponsePage.aspx?id=z5DZOU9c20miXgdj-zxh8fxNSokUYXdIvbKolveZFbJUQzFDTjNQRVZPQUwxVDBOUVA4UjhQSFk0US4u" 
@@ -333,7 +393,50 @@
             <p class="contact">담당자 연락처: 010-6203-2561</p>
         </footer>
     </div>
+
+    <!-- 이미지 확대 모달 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" id="closeModal">&times;</button>
+            &lt;img src="" alt="선배 프로필 확대" class="modal-image" id="modalImage"&gt;
+        </div>
+    </div>
+
+    <script>
+        // 이미지 확대 기능
+        const profileImage = document.getElementById('profileImage');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        // 이미지 클릭 시 모달 열기
+        profileImage.addEventListener('click', function() {
+            modalImage.src = this.src;
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        });
+
+        // 닫기 버튼 클릭 시 모달 닫기
+        closeModal.addEventListener('click', function() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 배경 스크롤 복원
+        });
+
+        // 모달 배경 클릭 시 닫기
+        imageModal.addEventListener('click', function(e) {
+            if (e.target === imageModal) {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
-
-
