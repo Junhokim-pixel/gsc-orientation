@@ -388,7 +388,7 @@
             <a href="index.html" class="back-button">메인 페이지로 돌아가기</a>
         </div>
 
-        <footer>
+              <footer>
             <p>문의사항이 있으시면 언제든지 연락주세요</p>
             <p class="contact">담당자 연락처: 010-6203-2561</p>
         </footer>
@@ -398,7 +398,7 @@
     <div id="imageModal" class="modal">
         <div class="modal-content">
             <button class="close-button" id="closeModal">&times;</button>
-            &lt;img src="" alt="선배 프로필 확대" class="modal-image" id="modalImage"&gt;
+            <img src="" alt="선배 프로필 확대" class="modal-image" id="modalImage">
         </div>
     </div>
 
@@ -411,15 +411,16 @@
 
         // 이미지 클릭 시 모달 열기
         profileImage.addEventListener('click', function() {
+            console.log('이미지 클릭됨'); // 디버깅용
             modalImage.src = this.src;
             imageModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+            document.body.style.overflow = 'hidden';
         });
 
         // 닫기 버튼 클릭 시 모달 닫기
         closeModal.addEventListener('click', function() {
             imageModal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // 배경 스크롤 복원
+            document.body.style.overflow = 'auto';
         });
 
         // 모달 배경 클릭 시 닫기
@@ -440,4 +441,3 @@
     </script>
 </body>
 </html>
-
